@@ -1,8 +1,7 @@
 # main profile? ??? ??? ??? ??
 spring:
-  config:
-    activate:
-      on-profile:
+  profiles:
+    active: dev
 
 
 
