@@ -4,18 +4,20 @@ spring:
     url: jdbc:mysql://localhost:3306/trendy_dev_db?useSSL=false&serverTimezone=UTC
     username: {DEV_DB_USERNAME}
     password: {DB_PASSWORD}
+    driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     hibernate:
-      ddl-auto: update # 테이블 없으면 생성, 있으면 컬럼 변경
+      ddl-auto: update
     show-sql: true
     properties:
       hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
         format_sql: true
 logging:
   level:
     root: DEBUG
   file:
     path: var/logs/trendy-dev.log
-#    name: logs/trendy-dev.log - 2.2에서 사용하던 버전
+
 
 
