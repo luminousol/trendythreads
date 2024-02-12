@@ -12,5 +12,13 @@ public class CategoryController {
 
     private final CategoryService categoryService;
 
+    // 카테고리 등록
+
+    // 카테고리 읽기
+
+    // 카테고리 수정
+
+    // 카테고리 삭제
+
 
 }
