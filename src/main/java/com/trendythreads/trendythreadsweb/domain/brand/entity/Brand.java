@@ -33,5 +33,4 @@ public class Brand {
     private String profileImage;    // 브랜드 프로필 이미지
 
 
-
 }
