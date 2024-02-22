@@ -9,7 +9,7 @@ import lombok.Setter;
 @Setter
 public class BrandPatchDto {
 
-    private Long brandId;
+    private Long id;
 
     private String profileImage;
 

@@ -71,7 +71,7 @@ public class BrandService {
     public Brand updateBrand(Brand brand) {
         // ✅ 비밀번호 검증 후 진행 => Authorized 된 사용자라면
         // 추후 아래 메서드 삭제
-        Brand getBrand = readVerifiedBrand(brand.getBrandId());
+        Brand getBrand = readVerifiedBrand(brand.getId());
 
         // ✅ 비밀번호, 이미지 구현 필요
         Optional.ofNullable(brand.getProfileImage()).ifPresent(image -> getBrand.setProfileImage(image));
