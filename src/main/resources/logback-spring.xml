@@ -1,4 +1,12 @@
 <configuration>
+    <!-- Console Appender 설정 -->
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- File Appender 설정 -->
     <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <file>/var/logs/trendy-dev.log</file>
         <encoder>
@@ -7,13 +15,19 @@
         <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
             <fileNamePattern>/var/logs/trendy-dev.%i.log</fileNamePattern>
             <minIndex>1</minIndex>
-            <maxIndex>10</maxIndex> <!-- 원하는 최대 로그 파일 수 지정 -->
+            <maxIndex>10</maxIndex>
         </rollingPolicy>
         <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
-            <maxFileSize>10MB</maxFileSize> <!-- 로그 파일 크기 제한 (10MB로 설정) -->
+            <maxFileSize>10MB</maxFileSize>
         </triggeringPolicy>
     </appender>
 
+    <!-- 특정 패키지(Logger) 설정 -->
+    <logger name="org.springframework.orm.jpa" level="DEBUG">
+        <appender-ref ref="CONSOLE"/>
+    </logger>
+
+    <!-- Root 로거 설정 -->
     <root level="DEBUG">
         <appender-ref ref="FILE" />
     </root>
