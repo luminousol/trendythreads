@@ -7,6 +7,6 @@ import java.util.List;
 
 public interface BrandRepository extends JpaRepository<Brand, Long> {
 
-    List<Brand> findByBrandBusinessNumber(String businessNumber);
+    List<Brand> findByBusinessNumber(String businessNumber);
 
 }

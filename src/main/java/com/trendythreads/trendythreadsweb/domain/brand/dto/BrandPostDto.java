@@ -27,7 +27,7 @@ public class BrandPostDto {
     private String businessNumber;    // 사업자 번호
 
     @NotBlank(message = "주소는 필수값 입니다.")
-    private String adress;  // 사업장 주소
+    private String address;  // 사업장 주소
 
     @NotBlank(message = "홈페이지 주소는 필수값 입니다.")
     private String homepage;    // 홈페이지 주소

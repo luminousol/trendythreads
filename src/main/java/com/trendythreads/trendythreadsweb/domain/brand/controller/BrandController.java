@@ -18,7 +18,6 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
-import java.net.http.HttpResponse;
 import java.util.List;
 
 // 브랜드 초기 페이지, 가입페이지 제외 모두 brands 와 admin role 없이는 접근 불가
@@ -49,7 +48,8 @@ public class BrandController {
     public ResponseEntity getBrand(@PathVariable("id") @Positive Long brandId) {
         Brand brand = brandService.readBrand(brandId);
         return new ResponseEntity(
-            new SingleResponseDto<>(brandMapper.brandToBrandResponseDto(brand)), HttpStatus.OK);
+            new SingleResponseDto<>(brandMapper.brandToBrandResponseDto(brand)),
+                HttpStatus.OK);
     }
 
     @GetMapping
@@ -58,7 +58,8 @@ public class BrandController {
         List<Brand> brandList = brandPage.getContent();
 
         return new ResponseEntity(
-                new MultiResponseDto<>(brandMapper.brandListToBrandResponseDto(brandList), brandPage), HttpStatus.OK);
+                new MultiResponseDto<>(brandMapper.brandListToBrandResponseDto(brandList), brandPage),
+                HttpStatus.OK);
     }
 
     // 브랜드 수정
@@ -69,7 +70,9 @@ public class BrandController {
         brandPatchDto.setId(brandId);
         Brand brand = brandService.updateBrand(brandMapper.brandPatchToBrand(brandPatchDto));
 
-        return new ResponseEntity(new SingleResponseDto<>(brandMapper.brandToBrandResponseDto(brand)), HttpStatus.OK);
+        return new ResponseEntity(
+                new SingleResponseDto<>(brandMapper.brandToBrandResponseDto(brand)),
+                HttpStatus.OK);
     }
 
 
@@ -79,7 +82,9 @@ public class BrandController {
     // 브랜드 삭제
     @DeleteMapping("/{id}")
     public ResponseEntity deleteBrand(@PathVariable("id") @Positive Long brandId) {
+        brandService.deleteBrand(brandId);
 
+        return new ResponseEntity(HttpStatus.NO_CONTENT);
     }
 
 }

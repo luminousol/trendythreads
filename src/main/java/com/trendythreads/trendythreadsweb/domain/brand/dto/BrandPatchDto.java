@@ -19,7 +19,7 @@ public class BrandPatchDto {
     private String password;    // 비밀번호
 
     @NotBlank(message = "주소는 필수값 입니다.")
-    private String adress;  // 사업장 주소
+    private String address;  // 사업장 주소
 
     @NotBlank(message = "고객센터 번호는 필수값 입니다.")
     private String csNumber;     // 고객센터

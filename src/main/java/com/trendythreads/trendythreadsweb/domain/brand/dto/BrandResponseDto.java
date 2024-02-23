@@ -15,7 +15,7 @@ public class BrandResponseDto {
 
     private String businessNumber;    // 사업자 번호
 
-    private String adress;  // 사업장 주소
+    private String address;  // 사업장 주소
 
     private String homepage;    // 홈페이지 주소
 

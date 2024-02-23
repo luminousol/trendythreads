@@ -36,7 +36,7 @@ public class BrandService {
     // 가입 중복 브랜드 확인
     private boolean duplicationBrand(String businessNumber){
 
-        List<Brand> brands = brandRepository.findByBrandBusinessNumber(businessNumber);
+        List<Brand> brands = brandRepository.findByBusinessNumber(businessNumber);
 
         if(!brands.isEmpty()) {
             throw new RuntimeException("📧 중복된 이메일입니다.");
@@ -77,7 +77,7 @@ public class BrandService {
         Optional.ofNullable(brand.getProfileImage()).ifPresent(image -> getBrand.setProfileImage(image));
         Optional.ofNullable(brand.getPassword()).ifPresent(password -> getBrand.setPassword(password));
         Optional.ofNullable(brand.getCsNumber()).ifPresent(csNumber -> getBrand.setCsNumber(csNumber));
-        Optional.ofNullable(brand.getAdress()).ifPresent(adress -> getBrand.setAdress(adress));
+        Optional.ofNullable(brand.getAddress()).ifPresent(address -> getBrand.setAddress(address));
 //        Optional.ofNullable(member.getPassword()).ifPresent(password -> getBrand.setPassword(passwordEncoder.encode(password)));
 
         return brandRepository.save(getBrand);
