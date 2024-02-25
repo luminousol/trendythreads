@@ -20,17 +20,13 @@ public class BrandService {
     // Create
     public Brand createBrand(Brand brand) {
 
-        // 사업자 번호로 가입 중복 확인
-        // ✅ 사업자 번호 유효성 검사
         duplicationBrand(brand.getBusinessNumber());
 
         // 이메일 확인 추후 구현
 
         // 사진 저장 구현
 
-        Brand savedBrand = brandRepository.save(brand);
-
-        return brand;
+        return brandRepository.save(brand);
     }
 
     // 가입 중복 브랜드 확인
@@ -39,12 +35,12 @@ public class BrandService {
         List<Brand> brands = brandRepository.findByBusinessNumber(businessNumber);
 
         if(!brands.isEmpty()) {
-            throw new RuntimeException("📧 중복된 이메일입니다.");
+            throw new RuntimeException("이미 가입된 브랜드(사용자)입니다.");
         }
         return true;
     }
 
-    // Read
+    // Read -> dto 다르게 해서 브랜드 정보만 보여주는 거, 본인이 보는 거 다르게 하기
     public Brand readBrand(Long brandId) {
 
         return readVerifiedBrand(brandId);
@@ -59,7 +55,7 @@ public class BrandService {
 
     public Page<Brand> readBrandsById(int page, int size) {
         return brandRepository.findAll(PageRequest.of(page, size,
-                Sort.by("brandId").descending()));
+                Sort.by("id").descending()));
     }
 
     public Page<Brand> readBrandsByName(int page, int size) {
@@ -70,7 +66,7 @@ public class BrandService {
     // Update
     public Brand updateBrand(Brand brand) {
         // ✅ 비밀번호 검증 후 진행 => Authorized 된 사용자라면
-        // 추후 아래 메서드 삭제
+
         Brand getBrand = readVerifiedBrand(brand.getId());
 
         // ✅ 비밀번호, 이미지 구현 필요
@@ -80,7 +76,7 @@ public class BrandService {
         Optional.ofNullable(brand.getAddress()).ifPresent(address -> getBrand.setAddress(address));
 //        Optional.ofNullable(member.getPassword()).ifPresent(password -> getBrand.setPassword(passwordEncoder.encode(password)));
 
-        return brandRepository.save(getBrand);
+        return brandRepository.save(brand);
     }
 
     // Delete
