@@ -20,7 +20,13 @@ import org.springframework.web.bind.annotation.*;
 import java.net.URI;
 import java.util.List;
 
-// 브랜드 초기 페이지, 가입페이지 제외 모두 brands 와 admin role 없이는 접근 불가
+/*
+brand 페이지의 역할
+1. brand 회원의 가입, 회원정보 수정, 조회, 삭제가 가능하다.
+2. brand 의 수입 내역, 해당 brand 내 주문 상황을 볼 수 있다.
+=> 주의 사항 : admin과 brand 회원만 접근 가능하며 가입하지 않은 자는 접근 불가하다.
+=> 초기 페이지와 가입 페이지만 접근이 가능하다.
+ */
 @RestController
 @RequestMapping("/brands")
 @AllArgsConstructor
