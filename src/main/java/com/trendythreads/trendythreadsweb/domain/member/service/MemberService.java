@@ -73,12 +73,12 @@ public class MemberService {
     }
 
     // 회원 삭제
-    public void deleteMember(Member member) {
+    public void deleteMember(Long memberId) {
         // ✅ 비밀번호 검증 후 진행 => Authorized 된 사용자라면
 
-        Member getMember = readVerifiedMember(member.getId());
+        Member getMember = readVerifiedMember(memberId);
 
-        memberRepository.delete(member);
+        memberRepository.delete(getMember);
     }
 
 }
