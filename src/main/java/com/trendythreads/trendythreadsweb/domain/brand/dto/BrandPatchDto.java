@@ -13,15 +13,14 @@ public class BrandPatchDto {
 
     private String profileImage;
 
-    @NotBlank(message = "비밀번호는 필수값입 니다.")
     @Pattern(regexp = "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[$@$!%*#?&])[A-Za-z\\d$@$!%*#?&]{8,20}$",
             message = "비밀번호는 8자리 이상 숫자, 문자, 특수문자 조합으로 입력해야 합니다.")
     private String password;    // 비밀번호
 
-    @NotBlank(message = "주소는 필수값 입니다.")
+    @NotBlank(message = "주소는 공백이 아니어야 합니다.")
     private String address;  // 사업장 주소
 
-    @NotBlank(message = "고객센터 번호는 필수값 입니다.")
+    @NotBlank(message = "고객센터 번호는 공백이 아니어야 합니다.")
     private String csNumber;     // 고객센터
 
 }
