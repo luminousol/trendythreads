@@ -28,7 +28,7 @@ brand 페이지의 역할
 => 초기 페이지와 가입 페이지만 접근이 가능하다.
  */
 @RestController
-@RequestMapping("/brands")
+@RequestMapping("/v1/brands")
 @AllArgsConstructor
 @Validated
 public class BrandController {
@@ -50,6 +50,8 @@ public class BrandController {
         return ResponseEntity.created(location).build();
     }
 
+    // 브랜드 정보 보기 (본인, admin, 고객)
+    // 브랜드 정보 연관 관계 매핑 : product, order
     @GetMapping("/{id}")
     public ResponseEntity getBrand(@PathVariable("id") @Positive Long brandId) {
         Brand brand = brandService.readBrand(brandId);
@@ -58,6 +60,7 @@ public class BrandController {
                 HttpStatus.OK);
     }
 
+    // 주소를 이렇게 두는 게 맞는지 의문...? 나중에 생각해보기
     @GetMapping
     public ResponseEntity getBrands(@Positive @RequestParam int page, @Positive @RequestParam int size) {
         Page<Brand> brandPage = brandService.readBrandsById(page - 1, size);
@@ -75,15 +78,11 @@ public class BrandController {
 
         brandPatchDto.setId(brandId);
         Brand brand = brandService.updateBrand(brandMapper.brandPatchToBrand(brandPatchDto));
-
+        // responsedto 변경
         return new ResponseEntity(
                 new SingleResponseDto<>(brandMapper.brandToBrandResponseDto(brand)),
                 HttpStatus.OK);
     }
-
-
-    // 브랜드 정보 보기 (본인, admin, 고객)
-    // 브랜드 정보 연관 관계 매핑 : product, order
 
     // 브랜드 삭제
     @DeleteMapping("/{id}")
